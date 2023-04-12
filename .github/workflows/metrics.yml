@@ -1,0 +1,22 @@
+name: Metrics
+on: 
+  schedule: 
+    - cron: "* /10 * * * *"
+jobs: 
+  - name: WakaTime - WakaTime
+    uses: lowlighter/metrics@latest
+    with: 
+      filename: metrics.plugin.wakatime.svg
+      token: NOT_NEEDED
+      base: ""
+      plugin_wakatime: yes
+      plugin_wakatime_sections: time, languages, language-graphs, editors, os
+      plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
+  - name: Full-year Calendar 
+    uses: lowlighter/metrics@latest
+    with: 
+      filename: metrics.plugin.isocalendar.fullyear.svg
+      token: ${{ secrets.METRICS_TOKEN }}
+      base: ""
+      plugin_isocalendar: yes
+      plugin_isocalendar_duration: full-year
