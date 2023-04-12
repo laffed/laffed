@@ -1,6 +1,6 @@
 name: Metrics
 on: 
-  schedule: [{cron: "*/2 * * * *"}]
+  schedule: [{cron: "0 2 * * *"}]
 jobs: 
   github-metrics:  
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
           token: NOT_NEEDED
           base: ""
           plugin_wakatime: yes
-          plugin_wakatime_sections: time, languages, languages-graphs, editors, os
+          plugin_wakatime_sections: time, languages, languages-graphs, editors, editors-graphs
           plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
       - name: Full-year Calendar 
         uses: lowlighter/metrics@latest
