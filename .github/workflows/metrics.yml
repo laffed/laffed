@@ -7,6 +7,7 @@ jobs:
     permissions:
       contents: write
     steps: 
+      - uses: actions/checkout@v2
       - name: WakaTime 
         uses: lowlighter/metrics@latest
         with: 
@@ -24,3 +25,15 @@ jobs:
           base: ""
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
+      - name: generate-profile-3d-contrib
+        uses: yoshi389111/github-profile-3d-contrib@0.6.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.METRICS_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+      - name: Commit & Push
+        run: |
+          git config user.name laffed
+          git config user.email roarklaffed@gmail.com
+          git add -A .
+          git commit -m "generated"
+          git push
